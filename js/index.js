@@ -24,10 +24,15 @@ window.addEventListener('DOMContentLoaded', () => {
   start.addEventListener('click', function (e) {
     document.querySelector('#quizBlock').style.display = 'block';
     start.style.display = 'none';
+    startTimer();
   });
+
+
+
   // quizArray QUESTIONS & ANSWERS
   // q = QUESTION, o = OPTIONS, a = CORRECT ANSWER
   // Basic ideas from https://code-boxx.com/simple-javascript-quiz/
+
   const quizArray = [
     {
       q: 'Which is the third planet from the sun?',
@@ -44,7 +49,21 @@ window.addEventListener('DOMContentLoaded', () => {
       o: ['Sydney', 'Canberra', 'Melbourne', 'Perth'],
       a: 1,
     },
+    {
+      q: 'Which tool can you use to ensure code quality?',
+      o: ['javascript', 'Jquery', 'Bootstrap', 'EsLint'],
+      a: 4,
+    },
+    {
+      q: 'What is the postcode of Melbourne',
+      o: ['2000', '3006', '3000', '4000'],
+      a: 3,
+    },
   ];
+
+  
+
+
 
   // function to Display the quiz questions and answers from the object
   const displayQuiz = () => {
@@ -52,11 +71,13 @@ window.addEventListener('DOMContentLoaded', () => {
     let quizDisplay = '';
     quizArray.map((quizItem, index) => {
       quizDisplay += `<ul class="list-group">
-                   Q - ${quizItem.q}
+      Q - ${quizItem.q}
                     <li class="list-group-item mt-2" id="li_${index}_0"><input type="radio" name="radio${index}" id="radio_${index}_0"> ${quizItem.o[0]}</li>
                     <li class="list-group-item" id="li_${index}_1"><input type="radio" name="radio${index}" id="radio_${index}_1"> ${quizItem.o[1]}</li>
                     <li class="list-group-item"  id="li_${index}_2"><input type="radio" name="radio${index}" id="radio_${index}_2"> ${quizItem.o[2]}</li>
                     <li class="list-group-item"  id="li_${index}_3"><input type="radio" name="radio${index}" id="radio_${index}_3"> ${quizItem.o[3]}</li>
+                    <li class="list-group-item"  id="li_${index}_4"><input type="radio" name="radio${index}" id="radio_${index}_4"> ${quizItem.o[4]}</li>
+                    <li class="list-group-item"  id="li_${index}_5"><input type="radio" name="radio${index}" id="radio_${index}_5"> ${quizItem.o[5]}</li>
                     </ul>
                     <div>&nbsp;</div>`;
       quizWrap.innerHTML = quizDisplay;
@@ -75,16 +96,61 @@ window.addEventListener('DOMContentLoaded', () => {
         radioElement = document.querySelector('#' + r);
 
         if (quizItem.a == i) {
-          //change background color of li element here
+          liElement.style.border = '3px solid green';
         }
 
-        if (radioElement.checked) {
+        if (radioElement.checked && quizItem.a ===i) {
           // code for task 1 goes here
+          score++;
+
         }
-      }
-    });
-  };
+      }});
+    };
+    // Display score board
+    function displayscore(){
+      const scoreDiv = document.getElementById('score');
+      scoreDiv.innerHTML = `Score: ${score}`;
+    }
 
   // call the displayQuiz function
   displayQuiz();
+  // Event listener submit button
+  let quizOver = 0;
+  const submitButton = document.getElementById('btnSubmit');
+  submitButton.style.display = "none";
+  calculateScore();
+  displayScore();
+  quizOver =1;
 });
+// Event listener for reset button
+const restButton = document.getElementById('btnReset'); 
+restButton = docunment.getElementById('click', () =>{
+  location.reload();
+});
+// set timer
+function startTimer(){
+  let timeleft = 60;
+  let downloadTimer = setInterval(function(){
+    if(timeleft < 0){
+      clearInterval(downloadTimer);
+      submitButton.click();
+    }
+    else if(quizOver === 1){
+      clearInterval(downloadTimer);
+    }
+    else {
+      document.getElementById("time").innerHTML = timeleft + "seconds";
+    }
+    timeleft -= 1;
+  }, 2000)
+};
+
+
+
+
+
+
+
+
+
+
