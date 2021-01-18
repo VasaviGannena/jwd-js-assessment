@@ -77,8 +77,7 @@ window.addEventListener('DOMContentLoaded', () => {
                     <li class="list-group-item" id="li_${index}_1"><input type="radio" name="radio${index}" id="radio_${index}_1"> ${quizItem.o[1]}</li>
                     <li class="list-group-item"  id="li_${index}_2"><input type="radio" name="radio${index}" id="radio_${index}_2"> ${quizItem.o[2]}</li>
                     <li class="list-group-item"  id="li_${index}_3"><input type="radio" name="radio${index}" id="radio_${index}_3"> ${quizItem.o[3]}</li>
-                    <li class="list-group-item"  id="li_${index}_4"><input type="radio" name="radio${index}" id="radio_${index}_4"> ${quizItem.o[4]}</li>
-                    <li class="list-group-item"  id="li_${index}_5"><input type="radio" name="radio${index}" id="radio_${index}_5"> ${quizItem.o[5]}</li>
+                    
                     </ul>
                     <div>&nbsp;</div>`;
       quizWrap.innerHTML = quizDisplay;
@@ -95,9 +94,13 @@ let score = 0;
         let r = `radio_${index}_${i}`;
         liElement = document.querySelector('#' + li);
         radioElement = document.querySelector('#' + r);
+        console.log(li);
+        console.log(r);
+        console.log(liElement);
+        console.log(radioElement);
 
         if (quizItem.a == i) {
-          liElement.style.border = '3px solid green';
+          liElement.style.border = '3px solid black';
         }
 
         if (radioElement.checked && quizItem.a ===i) {
