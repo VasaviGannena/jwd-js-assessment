@@ -25,7 +25,7 @@ window.addEventListener('DOMContentLoaded', () => {
   start.addEventListener('click', function (e) {
     document.querySelector('#quizBlock').style.display = 'block';
     start.style.display = 'none';
-    startTimer();
+    setTimer();
   });
 
 
@@ -77,8 +77,7 @@ window.addEventListener('DOMContentLoaded', () => {
                     <li class="list-group-item" id="li_${index}_1"><input type="radio" name="radio${index}" id="radio_${index}_1"> ${quizItem.o[1]}</li>
                     <li class="list-group-item"  id="li_${index}_2"><input type="radio" name="radio${index}" id="radio_${index}_2"> ${quizItem.o[2]}</li>
                     <li class="list-group-item"  id="li_${index}_3"><input type="radio" name="radio${index}" id="radio_${index}_3"> ${quizItem.o[3]}</li>
-                    
-                    </ul>
+                     </ul>
                     <div>&nbsp;</div>`;
       quizWrap.innerHTML = quizDisplay;
     });
@@ -137,7 +136,7 @@ location.reload();
 });
 
 // set timer
-function startTimer(){
+function setTimer(){
   let timeleft = 60;
   let downloadTimer = setInterval(function(){
     if(timeleft < 0){
