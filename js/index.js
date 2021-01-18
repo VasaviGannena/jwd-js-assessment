@@ -57,7 +57,7 @@ window.addEventListener('DOMContentLoaded', () => {
     },
     {
       q: 'What is the postcode of Melbourne',
-      o: ['2000', '3006', '3000', '4000'],
+      o: ['2000', '3006', '4000', '3000'],
       a: 3,
     },
   ];
@@ -100,7 +100,7 @@ let score = 0;
         console.log(radioElement);
 
         if (quizItem.a == i) {
-          liElement.style.border = '3px solid black';
+          liElement.style.border = '3px solid red';
         }
 
         if (radioElement.checked && quizItem.a ===i) {
