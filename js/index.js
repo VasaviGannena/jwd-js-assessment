@@ -20,6 +20,7 @@
 *************************** */
 
 window.addEventListener('DOMContentLoaded', () => {
+   let quizOver = 0;
   const start = document.querySelector('#start');
   start.addEventListener('click', function (e) {
     document.querySelector('#quizBlock').style.display = 'block';
@@ -83,10 +84,10 @@ window.addEventListener('DOMContentLoaded', () => {
       quizWrap.innerHTML = quizDisplay;
     });
   };
-
+let score = 0;
   // Calculate the score
   const calculateScore = () => {
-    let score = 0;
+    // let score = 0;
     quizArray.map((quizItem, index) => {
       for (let i = 0; i < 4; i++) {
         //highlight the li if it is the correct answer
@@ -105,9 +106,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
         }
       }});
+      return score;
     };
     // Display score board
-    function displayscore(){
+    function displayScore(){
       const scoreDiv = document.getElementById('score');
       scoreDiv.innerHTML = `Score: ${score}`;
     }
@@ -115,18 +117,22 @@ window.addEventListener('DOMContentLoaded', () => {
   // call the displayQuiz function
   displayQuiz();
   // Event listener submit button
-  let quizOver = 0;
+ 
   const submitButton = document.getElementById('btnSubmit');
-  submitButton.style.display = "none";
+  submitButton.addEventListener('click', () =>{
+ submitButton.style.display = "none";
   calculateScore();
   displayScore();
   quizOver =1;
-});
+  });
+ 
+
 // Event listener for reset button
 const restButton = document.getElementById('btnReset'); 
-restButton = docunment.getElementById('click', () =>{
-  location.reload();
+restButton.addEventListener ('click', () =>{
+location.reload();
 });
+
 // set timer
 function startTimer(){
   let timeleft = 60;
@@ -144,6 +150,7 @@ function startTimer(){
     timeleft -= 1;
   }, 2000)
 };
+});
 
 
 
